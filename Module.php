@@ -136,9 +136,9 @@ class Module extends AbstractModule {
     $settings = $settings->get('googletagmanager', '');
     if ($settings != null) {
       $code = $settings['googletagmanager_code'];
+      $headCode = $this->formatHeadCode($code);
+      $noscript = $this->formatNoscript($code);
     }
-    $headCode = $this->formatHeadCode($code);
-    $noscript = $this->formatNoscript($code);
     if (!empty($code)) {
       $content = preg_replace('/(<title>)/', $headCode . '${1}', $content);
       $content = preg_replace('/(<body[^>]*>)/', '${1}' . $noscript, $content);
